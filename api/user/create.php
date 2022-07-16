@@ -19,18 +19,13 @@ $data = json_decode(file_get_contents("php://input"));
 
 $user->firstname = $data->firstname;
 $user->lastname = $data->lastname;
+$user->identification = $data->identification;
 $user->email = $data->email;
 $user->phone = $data->phone;
 $user->birthday = $data->birthday;
 $user->password = $data->password;
 
 // Create user
-if($user->create()) {
-    echo json_encode(
-        array('message' => 'User Created')
-    );
-} else {
-    echo json_encode(
-        array('message' => 'User Not Created')
-    );
-}
+echo json_encode(
+    array('message' => $user->create())
+);
